@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>WAT PAT</title>
+    <style type="text/css">
+    body {
+        background-image: url("images/pat.gif");
+        background-repeat: repeat;
+    }
+    h1 {
+        font-family: Verdana;
+        font-size: 1000%;
+        margin: auto;
+        text-align: center;
+    }
+    </style>
+</head>
+<body>
+    <h1>GET</h1><h1>A</h1><h1>LIFE</h1>
+    <div id="player"></div>
+    <script>
+    var tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/iframe_api";
+    var firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+    var player;
+    function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '1',
+          width: '1',
+          videoId: 'q_qUiytLYRc',
+          playerVars: { 'autoplay': 1, 'controls': 0 },
+          events: {
+            'onReady': function(event) {
+                event.target.setVolume(100);
+                event.target.playVideo();
+                var value = 0, h1s = document.body.getElementsByTagName("h1");
+                setInterval(function() {
+                        Array.prototype.slice.call(h1s).forEach(function(entry) {
+                            entry.style.transform = 'rotateX('+value+'deg) rotateY('+ value/2 +'deg)';
+                        });
+                    value += value < 720 ? 10 : -value;
+                }, 50);
+             }
+          }});
+      };
+    </script>
+</body>
+</html>
